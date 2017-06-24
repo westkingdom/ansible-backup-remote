@@ -9,12 +9,12 @@
     login_password: "{{ db_pass }}"
     name: "{{ item }}"
     state: dump
-    target: "{{ remote_bk_dir }}/{{ item }}_db.sql.gz"
+    target: "{{ remote_bk_dir }}/{{ item }}/{{ date }}_db.sql.gz"
   with_items: "{{ databases }}"
 
 - name: Fetch databases backups
   become: false
-  fetch: src="{{ remote_bk_dir }}/{{ item }}_db.sql.gz" dest={{ local_bk_dir }}
+  fetch: src="{{ remote_bk_dir }}/{{ item }}{{ date }}_db.sql.gz" dest={{ local_bk_dir }}
   with_items: "{{ databases }}"
   tags:
     - databases

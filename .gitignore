@@ -3,3 +3,4 @@
 /backups/
 *.retry
 vars.yml
+hosts
